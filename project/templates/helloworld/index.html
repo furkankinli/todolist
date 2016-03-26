@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+{% load staticfiles %} 
+<html>
+    <head>
+        <title>To Do List</title>
+    </head>
+
+    <body style="background-color:black;">
+	<div id="container" style="position:relative; color:white; margin-left:50px; align:center; font-family:cursive; font-size:28px;">
+       	<img src="/static/images/tdl.gif" alt="To Do List" />
+		<div id="goal">
+			<strong>Here is the to-do list for me in March.</strong>
+		</div>	
+		{% if job %}
+        	    <ul>
+              		{% for j in job %}
+               		 <div id="name"><li>Job name: {{ j.name }}</li></div>
+				<ul>
+					<div id="desc"><li> Job description: {{ j.description }}</li></div>
+					<div id="pr"><li> Job priority: {{ j.priority }} </li></div>
+					<div id="date"><li> Job date: {{ j.date }} </li></div>
+				</ul>
+        	        {% endfor %}
+           	 </ul>
+        	{% else %}
+           		 <strong>There are no Jobs present.</strong>
+       		 {% endif %}
+	</div>
+	</body>
+</html>

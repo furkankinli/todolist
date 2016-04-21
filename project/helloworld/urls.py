@@ -1,5 +1,8 @@
 from django.conf.urls import patterns, url
-from helloworld import views
+from . import views
 
-urlpatterns = patterns('',
-        url(r'^$', views.index, name='index'))
+urlpatterns = [
+        url(r'^helloworld/$', views.index, name='index'),
+	url(r'^angular/$', views.angular, name='angular'),
+	url(r'^database/$', views.database, name='database'),]
+

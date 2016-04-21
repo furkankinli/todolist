@@ -24,3 +24,15 @@ class Job(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+class JobDB(models.Model):
+	name = models.CharField(max_length=20, unique=True)
+        description =  models.CharField(max_length=100)
+        date = models.DateField()
+	priority = models.IntegerField()
+
+        class Meta:
+                verbose_name_plural = "JobDB"
+
+        def __unicode__(self):
+		return self.name

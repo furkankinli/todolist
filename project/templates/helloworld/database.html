@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:black;" ng-app="todolist" ng-controller="todoController">
+        <div id="header" style="background-color:white;">
+                <div id="logo" style="margin-left:50px;">
+                        <img src="/static/images/tdl.gif" alt="To Do List" />
+                </div>
+        </div>
+        <div id="container" style="position:relative; color:white; margin-left:50px; align:center; font-family:cursive; font-size:28px;">
+
+                <br><br>
+		<form action="{% url 'database' %}" method="post"> {% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Submit" />
+		</form>
+	</div>
+</body>
+</html>

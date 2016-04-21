@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body style="background-color:black;" ng-app="todolist" ng-controller="todoController">
+	<div id="header" style="background-color:white;">
+		<div id="logo" style="margin-left:50px;">
+			<img src="/static/images/tdl.gif" alt="To Do List" />
+		</div>
+	</div>
+	<div id="container" style="position:relative; color:white; margin-left:50px; align:center; font-family:cursive; font-size:28px;">
+
+		<br><br>
+		<form ng-submit="todoAdd()">
+   			 Name:  <input type="text" ng-model="name" size="40" placeholder="Name"><br>
+   			 Description: <input type="text" ng-model="desc" size="100" placeholder="Description"><br>
+   			 Priority: <input type="text" ng-model="prio" size="15" placeholder="Priority"><br>
+   			 Date: <input type="date" ng-model="date"><br><br>
+   			 <input type="submit" value="Add New">
+		</form>
+		<br>
+		<div ng-repeat="job in todoList">
+			<ul>
+   				 <input type="checkbox" ng-model="job.done"> <span ng-bind="job.todoName"></span>
+    				<li><span ng-bind="job.todoDesc"></span></li>
+   				<li><span ng-bind="job.todoPrio"></span></li>
+   				<li><span ng-bind="job.todoDate"></span></li>
+			</ul>
+		</div>
+
+	<p>You have currently <span class="numOfJob">
+		<div id="numOfJob"></div>
+	</span> jobs.</p>
+
+	<p><button ng-click="remove()">Remove</button></p>
+	</div>
+<script>
+var app = angular.module('todolist', []); 
+app.controller('todoController', function($scope) {
+    $scope.todoList = [];
+
+    $scope.todoAdd = function() {
+        $scope.todoList.push({todoName:$scope.name, todoDesc:$scope.desc, todoPrio:$scope.prio, todoDate:$scope.date, done:false});
+        $scope.todoName = "";
+	$scope.todoDesc = "";
+	$scope.todoPrio = "";
+	$scope.todoDate = "";
+    };
+	
+    $scope.getTotalTodos = function () {
+	return $scope.todoList.length;
+    };
+
+    $scope.remove = function() {
+        var oldList = $scope.todoList;
+        $scope.todoList = [];
+        angular.forEach(oldList, function(job) {
+            if (!job.done) $scope.todoList.push(job);
+        });
+    };
+});
+</script>
+
+</body>
+</html>
+

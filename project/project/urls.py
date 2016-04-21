@@ -23,5 +23,5 @@ if not settings.DEBUG:
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^helloworld/', include('helloworld.urls')),
+    url(r'^', include('helloworld.urls')),
 ]
